@@ -2,12 +2,13 @@
 
 ## 💻 Tecnologías utilizadas
 
-* Vite — Bundler rápido para desarrollo moderno en React
-* React 18 — Framework para construir interfaces interactivas
-* Rive React — Librería oficial de Rive para integrar animaciones .riv
+* Vite - Bundler rápido para desarrollo moderno en React
+* React 18 - Framework para construir interfaces interactivas
+* Rive React - Librería oficial de Rive para integrar animaciones .riv
 * JavaScript 
-    * JSX
-* CSS / Tailwind 
+  * JSX
+* CSS 
+  * Tailwind 
 
 ## 🚀 Quick Start
 
