@@ -140,7 +140,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                 type="password"
                 className="form-pass"
                 name="password"
-                placeholder="Password (shh.. it's 'teddy')"
+                placeholder="Password"
                 value={passValue}
                 onFocus={() => (isHandsUpInput!.value = true)}
                 onBlur={() => (isHandsUpInput!.value = false)}

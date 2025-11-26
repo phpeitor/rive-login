@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 
-// importa tu login animado
 import LoginFormComponent from './login-form/LoginFormComponent';
 import './login-form/LoginFormComponent.css';
 
