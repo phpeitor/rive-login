@@ -1,11 +1,13 @@
-# 🐻‍❄️ Login Animado con Rive + React + Vite
+# 🐻‍❄️ Login Animated (Rive + React + Vite)
 
-Vite — Bundler rápido para desarrollo moderno en React.
-React 18 — Framework para construir interfaces interactivas.
-Rive React — Librería oficial de Rive para integrar animaciones .riv.
-JavaScript / JSX
+## 💻 Tecnologías utilizadas
 
-CSS / Tailwind (opcional según configuración)
+* Vite — Bundler rápido para desarrollo moderno en React
+* React 18 — Framework para construir interfaces interactivas
+* Rive React — Librería oficial de Rive para integrar animaciones .riv
+* JavaScript 
+    * JSX
+* CSS / Tailwind 
 
 ## 🚀 Quick Start
 
