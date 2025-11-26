@@ -20,6 +20,10 @@
   margin: 0 auto;
   position: relative;
   z-index: 5;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(6px);
 }
 
 .form-container {
