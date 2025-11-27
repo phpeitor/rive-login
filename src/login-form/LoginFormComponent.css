@@ -21,9 +21,10 @@
   position: relative;
   z-index: 5;
   border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border: 2px solid rgba(255,255,255,0.35);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(6px);
 }
 
 .form-container {
@@ -31,6 +32,7 @@
   background-color: #ffffff;
   padding: var(--spacing-4x);
   box-sizing: border-box;
+  border-radius: 0; 
 }
 
 .form-container label {
@@ -76,13 +78,15 @@
 }
 
 .rive-container {
+  width: 100%;
   min-height: 300px;
   min-width: 400px;
-  width: 100%;
-  margin: 0 auto;
+  border-radius: 0; 
+  overflow: hidden;
 }
 
 .login-form-wrapper {
   width: 100%;
   max-width: 400px;
+  overflow: hidden;
 }
