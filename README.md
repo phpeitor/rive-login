@@ -5,10 +5,8 @@
 * Vite - Bundler rápido para desarrollo moderno en React
 * React 18 - Framework para construir interfaces interactivas
 * Rive React - Librería oficial de Rive para integrar animaciones .riv
-* JavaScript 
-  * JSX
-* CSS 
-  * Tailwind 
+* JSX
+* Tailwind 
 
 ## 🚀 Quick Start
 
@@ -26,3 +24,6 @@ npm install rive-react
 ```bash
 npm run dev
 ```
+
+[![Video](https://img.youtube.com/vi/DhTUdLmyLqs/0.jpg)](https://www.youtube.com/watch?v=DhTUdLmyLqs)  
+[Ver demo](https://www.youtube.com/watch?v=DhTUdLmyLqs)
