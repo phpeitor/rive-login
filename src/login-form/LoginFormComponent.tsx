@@ -18,8 +18,29 @@ import {
 import './LoginFormComponent.css';
 
 const STATE_MACHINE_NAME = 'Login Machine';
-const LOGIN_PASSWORD = 'teddy';
 const LOGIN_TEXT = 'Login';
+
+type LoginMockData = {
+  success: {
+    usuario: string;
+    password: string;
+  };
+  error: {
+    usuario: string;
+    password: string;
+  };
+};
+
+const DEFAULT_LOGIN_MOCK: LoginMockData = {
+  success: {
+    usuario: 'demo',
+    password: 'teddy',
+  },
+  error: {
+    usuario: 'demo',
+    password: 'incorrecta',
+  },
+};
 
 /**
  * Use case for a simple login experience that incorporates a Rive asset with a
@@ -41,7 +62,26 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
   const [passValue, setPassValue] = useState('');
   const [inputLookMultiplier, setInputLookMultiplier] = useState(0);
   const [loginButtonText, setLoginButtonText] = useState(LOGIN_TEXT);
+  const [loginMock, setLoginMock] = useState<LoginMockData>(DEFAULT_LOGIN_MOCK);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    fetch('/mock-login.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Could not load mock-login.json');
+        }
+        return response.json();
+      })
+      .then((data: LoginMockData) => {
+        if (data?.success?.usuario && data?.success?.password) {
+          setLoginMock(data);
+        }
+      })
+      .catch(() => {
+        // Keep default credentials if the JSON file is not available.
+      });
+  }, []);
 
   const isCheckingInput: StateMachineInput | null = useStateMachineInput(
     riveInstance,
@@ -106,7 +146,8 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
     setLoginButtonText('Checking...');
     setTimeout(() => {
       setLoginButtonText(LOGIN_TEXT);
-      passValue === LOGIN_PASSWORD
+      userValue === loginMock.success.usuario &&
+      passValue === loginMock.success.password
         ? trigSuccessInput!.fire()
         : trigFailInput!.fire();
     }, 1500);
