@@ -5,6 +5,10 @@
 
 Demo de login animado con Rive en React y Vite. El personaje responde a foco, escritura y resultado del formulario (success o error).
 
+[![Video](https://img.youtube.com/vi/DhTUdLmyLqs/0.jpg)](https://www.youtube.com/watch?v=DhTUdLmyLqs)
+
+[Ver demo en YouTube](https://www.youtube.com/watch?v=DhTUdLmyLqs)
+
 ## Stack
 
 - React 19
