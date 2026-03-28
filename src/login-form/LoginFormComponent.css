@@ -79,6 +79,43 @@
   color: #f1f1f1;
 }
 
+.test-panel {
+  border-top: 1px solid #e7e7e7;
+  padding-top: var(--spacing-2x);
+}
+
+.test-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 var(--spacing-1x);
+}
+
+.test-actions {
+  display: flex;
+  gap: var(--spacing-1x);
+  margin-bottom: var(--spacing-2x);
+}
+
+.test-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.test-btn {
+  flex: 1;
+  border: 1px solid #dbdbdb;
+  background: #f8f8f8;
+  color: #202020;
+  height: 38px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.test-btn:hover {
+  background: #efefef;
+}
+
 .rive-wrapper {
   width: 100%;
 }

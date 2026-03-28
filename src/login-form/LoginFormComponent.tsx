@@ -160,12 +160,93 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
     setLoginButtonText('Checking...');
     setTimeout(() => {
       setLoginButtonText(LOGIN_TEXT);
-      userValue === loginMock.success.usuario &&
-      passValue === loginMock.success.password
-        ? (trigSuccessInput?.fire(), toast.success('Login exitoso'))
-        : (trigFailInput?.fire(), toast.error('Usuario o contraseña incorrectos'));
+      const isSuccessLogin =
+        userValue === loginMock.success.usuario &&
+        passValue === loginMock.success.password;
+      const isKnownErrorCase =
+        userValue === loginMock.error.usuario &&
+        passValue === loginMock.error.password;
+
+      if (isSuccessLogin) {
+        trigSuccessInput?.fire();
+        toast.success('Login exitoso');
+        return;
+      }
+
+      trigFailInput?.fire();
+      if (isKnownErrorCase) {
+        toast.error('Error simulado: credenciales marcadas como error');
+      } else {
+        toast.error('Usuario o contraseña incorrectos');
+      }
     }, 1500);
     return false;
+  };
+
+  const loadScenario = (scenario: 'success' | 'error') => {
+    setUserValue(loginMock[scenario].usuario);
+    setPassValue(loginMock[scenario].password);
+    setIsUserTouched(false);
+    setIsPassTouched(false);
+    setHasSubmitted(false);
+
+    isCheckingInput?.value && (isCheckingInput.value = false);
+    isHandsUpInput?.value && (isHandsUpInput.value = false);
+    if (numLookInput && inputLookMultiplier) {
+      numLookInput.value = loginMock[scenario].usuario.length * inputLookMultiplier;
+    }
+
+    toast.message(
+      scenario === 'success'
+        ? 'Credenciales de success cargadas'
+        : 'Credenciales de error cargadas'
+    );
+  };
+
+  const runAnimation = (
+    animation:
+      | 'look'
+      | 'handsUp'
+      | 'handsDown'
+      | 'success'
+      | 'fail'
+      | 'reset'
+  ) => {
+    if (animation === 'look') {
+      isCheckingInput && (isCheckingInput.value = true);
+      numLookInput && (numLookInput.value = 60);
+      toast.message('Animacion: mirar al input');
+      return;
+    }
+
+    if (animation === 'handsUp') {
+      isHandsUpInput && (isHandsUpInput.value = true);
+      toast.message('Animacion: manos arriba');
+      return;
+    }
+
+    if (animation === 'handsDown') {
+      isHandsUpInput && (isHandsUpInput.value = false);
+      toast.message('Animacion: manos abajo');
+      return;
+    }
+
+    if (animation === 'success') {
+      trigSuccessInput?.fire();
+      toast.success('Animacion: success');
+      return;
+    }
+
+    if (animation === 'fail') {
+      trigFailInput?.fire();
+      toast.error('Animacion: fail');
+      return;
+    }
+
+    isCheckingInput && (isCheckingInput.value = false);
+    isHandsUpInput && (isHandsUpInput.value = false);
+    numLookInput && (numLookInput.value = 0);
+    toast.message('Animacion: reset');
   };
 
   const isUserInvalid = (hasSubmitted || isUserTouched) && !userValue.trim();
@@ -217,6 +298,71 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
             </label>
             <button className="login-btn">{loginButtonText}</button>
           </form>
+          <div className="test-panel">
+            <p className="test-title">Probar escenarios</p>
+            <div className="test-actions">
+              <button
+                type="button"
+                className="test-btn"
+                onClick={() => loadScenario('success')}
+              >
+                Cargar success
+              </button>
+              <button
+                type="button"
+                className="test-btn"
+                onClick={() => loadScenario('error')}
+              >
+                Cargar error
+              </button>
+            </div>
+
+            <p className="test-title">Animaciones del bear</p>
+            <div className="test-actions test-actions-grid">
+              <button
+                type="button"
+                className="test-btn"
+                onClick={() => runAnimation('look')}
+              >
+                Mirar input
+              </button>
+              <button
+                type="button"
+                className="test-btn"
+                onClick={() => runAnimation('handsUp')}
+              >
+                Manos arriba
+              </button>
+              <button
+                type="button"
+                className="test-btn"
+                onClick={() => runAnimation('handsDown')}
+              >
+                Manos abajo
+              </button>
+              <button
+                type="button"
+                className="test-btn"
+                onClick={() => runAnimation('success')}
+              >
+                Success
+              </button>
+              <button
+                type="button"
+                className="test-btn"
+                onClick={() => runAnimation('fail')}
+              >
+                Fail
+              </button>
+              <button
+                type="button"
+                className="test-btn"
+                onClick={() => runAnimation('reset')}
+              >
+                Reset
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
