@@ -68,6 +68,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
   const [isUserTouched, setIsUserTouched] = useState(false);
   const [isPassTouched, setIsPassTouched] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [showTestPanel, setShowTestPanel] = useState(false);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -298,7 +299,14 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
             </label>
             <button className="login-btn">{loginButtonText}</button>
           </form>
-          <div className="test-panel">
+          <button
+            type="button"
+            className="toggle-test-panel"
+            onClick={() => setShowTestPanel(!showTestPanel)}
+          >
+            {showTestPanel ? '✕ Cerrar pruebas' : '⚙ Pruebas'}
+          </button>
+          <div className={`test-panel ${showTestPanel ? 'test-panel-visible' : 'test-panel-hidden'}`}>
             <p className="test-title">Probar escenarios</p>
             <div className="test-actions">
               <button
