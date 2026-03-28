@@ -15,7 +15,9 @@ import {
   RiveState,
   StateMachineInput,
 } from 'rive-react';
+import { Toaster, toast } from 'sonner';
 import './LoginFormComponent.css';
+import 'sonner/dist/styles.css';
 
 const STATE_MACHINE_NAME = 'Login Machine';
 const LOGIN_TEXT = 'Login';
@@ -38,7 +40,7 @@ const DEFAULT_LOGIN_MOCK: LoginMockData = {
   },
   error: {
     usuario: 'demo',
-    password: 'incorrecta',
+    password: 'error',
   },
 };
 
@@ -63,6 +65,9 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
   const [inputLookMultiplier, setInputLookMultiplier] = useState(0);
   const [loginButtonText, setLoginButtonText] = useState(LOGIN_TEXT);
   const [loginMock, setLoginMock] = useState<LoginMockData>(DEFAULT_LOGIN_MOCK);
+  const [isUserTouched, setIsUserTouched] = useState(false);
+  const [isPassTouched, setIsPassTouched] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -143,20 +148,32 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
   // When submitting, simulate password validation checking and trigger the appropriate input from the
   // state machine
   const onSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    setHasSubmitted(true);
+
+    if (!userValue.trim() || !passValue.trim()) {
+      toast.error('Completa usuario y contraseña');
+      trigFailInput?.fire();
+      return false;
+    }
+
     setLoginButtonText('Checking...');
     setTimeout(() => {
       setLoginButtonText(LOGIN_TEXT);
       userValue === loginMock.success.usuario &&
       passValue === loginMock.success.password
-        ? trigSuccessInput!.fire()
-        : trigFailInput!.fire();
+        ? (trigSuccessInput?.fire(), toast.success('Login exitoso'))
+        : (trigFailInput?.fire(), toast.error('Usuario o contraseña incorrectos'));
     }, 1500);
-    e.preventDefault();
     return false;
   };
 
+  const isUserInvalid = (hasSubmitted || isUserTouched) && !userValue.trim();
+  const isPassInvalid = (hasSubmitted || isPassTouched) && !passValue.trim();
+
   return (
     <div className="login-form-component-root">
+      <Toaster position="top-center" richColors closeButton />
       <div className="login-form-wrapper">
         <div className="rive-wrapper">
           <RiveComponent className="rive-container" />
@@ -166,28 +183,36 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
             <label>
               <input
                 type="text"
-                className="form-username"
+                className={`form-username ${isUserInvalid ? 'input-error' : ''}`}
                 name="username"
                 placeholder="Username"
                 onFocus={onUsernameFocus}
                 value={userValue}
                 onChange={onUsernameChange}
-                onBlur={() => (isCheckingInput!.value = false)}
+                onBlur={() => {
+                  isCheckingInput!.value = false;
+                  setIsUserTouched(true);
+                }}
                 ref={inputRef}
+                aria-invalid={isUserInvalid}
               />
             </label>
             <label>
               <input
                 type="password"
-                className="form-pass"
+                className={`form-pass ${isPassInvalid ? 'input-error' : ''}`}
                 name="password"
                 placeholder="Password"
                 value={passValue}
                 onFocus={() => (isHandsUpInput!.value = true)}
-                onBlur={() => (isHandsUpInput!.value = false)}
+                onBlur={() => {
+                  isHandsUpInput!.value = false;
+                  setIsPassTouched(true);
+                }}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setPassValue(e.target.value)
                 }
+                aria-invalid={isPassInvalid}
               />
             </label>
             <button className="login-btn">{loginButtonText}</button>

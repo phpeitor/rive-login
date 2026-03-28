@@ -54,6 +54,12 @@
   cursor: text;
   border: none;
   border-radius: var(--border-radius-1x);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-container input.input-error {
+  border: 2px solid #d72d2d;
+  box-shadow: 0 0 0 2px rgba(215, 45, 45, 0.14);
 }
 
 .login-btn {
