@@ -1,7 +1,7 @@
 # Rive Login Demo 🐻
 
-[![forthebadge](http://forthebadge.com/images/badges/made-with-typescript.svg)](https://www.linkedin.com/in/drphp/)
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
+[![forthebadge](http://forthebadge.com/badges/made-with-typescript.svg)](https://www.linkedin.com/in/drphp/)
+[![forthebadge](http://forthebadge.com/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
 
 Demo de login animado con Rive en React y Vite. El personaje responde a foco, escritura y resultado del formulario (success o error).
 
