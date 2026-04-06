@@ -3,7 +3,7 @@
 Demo de login animado con Rive, React y Vite.
 El personaje responde al foco de los inputs, a la escritura y al resultado del inicio de sesion.
 
-[![forthebadge](http://forthebadge.com/badges/uses-typescript.svg)](https://www.linkedin.com/in/drphp/)
+[![forthebadge](https://forthebadge.com/api/badges/generate?panels=2&primaryLabel=MADE+WITH&secondaryLabel=TYPESCRIPT&primaryBGColor=%23429eff&secondaryBGColor=%233178c6&primaryTextColor=%23FFFFFF&primaryFontSize=12&primaryFontWeight=600&primaryLetterSpacing=2&primaryFontFamily=Roboto&primaryTextTransform=uppercase&secondaryTextColor=%23FFFFFF&secondaryFontSize=12&secondaryFontWeight=900&secondaryLetterSpacing=2&secondaryFontFamily=Montserrat&secondaryTextTransform=uppercase&secondaryIcon=typescript&secondaryIconColor=%23FFFFFF&secondaryIconSize=16&secondaryIconPosition=left)](https://www.linkedin.com/in/drphp/)
 [![forthebadge](http://forthebadge.com/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
 
 [![Video](https://img.youtube.com/vi/DhTUdLmyLqs/0.jpg)](https://www.youtube.com/watch?v=DhTUdLmyLqs)
