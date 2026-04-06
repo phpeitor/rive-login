@@ -1,11 +1,16 @@
-# Rive Login Demo
+# Rive Login 🐻
 
 Demo de login animado con Rive, React y Vite.
 El personaje responde al foco de los inputs, a la escritura y al resultado del inicio de sesion.
 
-[Ver demo en YouTube](https://www.youtube.com/watch?v=DhTUdLmyLqs)
+[![forthebadge](http://forthebadge.com/badges/uses-css.svg)](https://www.linkedin.com/in/drphp/)
+[![forthebadge](http://forthebadge.com/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
 
-## Que incluye
+[![Video](https://img.youtube.com/vi/DhTUdLmyLqs/0.jpg)](https://www.youtube.com/watch?v=DhTUdLmyLqs)
+
+[![Video Demo](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=DhTUdLmyLqs)
+
+## 📋 Que incluye
 
 - Integracion de un archivo Rive con state machine.
 - Login simulado con credenciales definidas en JSON.
