@@ -1,87 +1,108 @@
-# Rive Login Demo 🐻
+# Rive Login Demo
 
-[![forthebadge](http://forthebadge.com/badges/made-with-typescript.svg)](https://www.linkedin.com/in/drphp/)
-[![forthebadge](http://forthebadge.com/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
-
-Demo de login animado con Rive en React y Vite. El personaje responde a foco, escritura y resultado del formulario (success o error).
-
-[![Video](https://img.youtube.com/vi/DhTUdLmyLqs/0.jpg)](https://www.youtube.com/watch?v=DhTUdLmyLqs)
+Demo de login animado con Rive, React y Vite.
+El personaje responde al foco de los inputs, a la escritura y al resultado del inicio de sesion.
 
 [Ver demo en YouTube](https://www.youtube.com/watch?v=DhTUdLmyLqs)
+
+## Que incluye
+
+- Integracion de un archivo Rive con state machine.
+- Login simulado con credenciales definidas en JSON.
+- Feedback visual y de estado (success o fail).
+- Panel de pruebas para cargar escenarios y disparar animaciones manualmente.
 
 ## Stack
 
 - React 19
 - Vite 7
 - rive-react
+- sonner
 - CSS
 
 ## Requisitos
 
-- Node.js 18+
+- Node.js 20 o superior (recomendado para el ecosistema actual de Vite).
 - npm
 
-## Instalacion
+## Inicio rapido
+
+1. Instalar dependencias.
 
 ```bash
 npm install
 ```
 
-## Scripts disponibles
+2. Levantar entorno de desarrollo.
 
 ```bash
-npm run dev      # desarrollo
-npm run build    # build de produccion
-npm run preview  # previsualizar build
-npm run lint     # revisar estilo/codigo
+npm run dev
 ```
 
-## Flujo de login simulado
+3. Abrir en navegador.
 
-El componente carga credenciales desde:
+```text
+http://localhost:5173
+```
 
-- public/mock-login.json
+## Scripts
 
-Regla actual del formulario:
+- npm run dev: servidor de desarrollo.
+- npm run build: build de produccion.
+- npm run preview: previsualiza el build local.
+- npm run lint: revisa reglas de lint.
 
-- Si usuario y password coinciden con success, dispara animacion de exito.
-- Cualquier otra combinacion dispara animacion de error.
+## Credenciales y flujo de login
 
-## Credenciales de prueba
+El componente intenta leer credenciales desde public/mock-login.json.
 
-Archivo actual:
+Valores esperados por defecto:
 
 ```json
 {
-	"success": {
-		"usuario": "demo",
-		"password": "teddy"
-	},
-	"error": {
-		"usuario": "demo",
-		"password": "error"
-	}
+  "success": {
+    "usuario": "demo",
+    "password": "teddy"
+  },
+  "error": {
+    "usuario": "demo",
+    "password": "error"
+  }
 }
 ```
 
-Pruebas rapidas:
+Reglas de validacion:
 
-1. Success: usuario demo, password teddy.
-2. Error: cualquier password distinta de teddy (por ejemplo error).
+- Si coincide con success, dispara animacion de exito.
+- Si no coincide, dispara animacion de error.
+- Si el JSON no existe o falla, se usan credenciales internas por defecto.
 
-## Estructura relevante
+## Panel de pruebas
+
+Desde la UI puedes:
+
+- Cargar escenario success.
+- Cargar escenario error.
+- Ejecutar animaciones del personaje: mirar input, manos arriba, manos abajo, success, fail y reset.
+
+## Estructura principal
 
 ```text
 public/
-	login-teddy.riv
-	mock-login.json
+  login-teddy.riv
+  mock-login.json
 src/
-	login-form/
-		LoginFormComponent.tsx
-		LoginFormComponent.css
+  login-form/
+    LoginFormComponent.tsx
+    LoginFormComponent.css
 ```
 
-## Notas
+## Troubleshooting
 
-- Si no carga mock-login.json, el componente usa credenciales por defecto internas.
-- El archivo .riv debe conservar el state machine Login Machine con entradas esperadas (isChecking, numLook, trigSuccess, trigFail, isHandsUp).
+- Si ves imports CSS en rojo en TypeScript, verifica que exista src/types/style-imports.d.ts con la declaracion de modulo para .css.
+- Si aparece un aviso de baseline-browser-mapping en terminal, puedes actualizarlo con npm i baseline-browser-mapping@latest -D.
+- Si cambias package-lock.json y Vite recompila dependencias, ese comportamiento es normal.
+
+## Licencia
+
+Proyecto de demostracion para aprendizaje e integracion con Rive.
